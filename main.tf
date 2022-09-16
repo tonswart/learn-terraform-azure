@@ -40,7 +40,7 @@ resource "azurerm_resource_group" "tf_test" {
 }
 
 resource "azurerm_container_group" "tfcg_test" {
-  name                = "${var.dockerrepository}"
+  name                = "${var.dockerhub_repository}"
   location            = azurerm_resource_group.tf_test.location
   resource_group_name = azurerm_resource_group.tf_test.name
 
@@ -50,7 +50,7 @@ resource "azurerm_container_group" "tfcg_test" {
 
   container {
     name   = "weatherapi"
-    image  = "${var.dockerhub_account}/${var.dockerrepository}:${var.imagebuild}"
+    image  = "${var.dockerhub_account}/${var.dockerhub_repository}:${var.imagebuild}"
     cpu    = 1
     memory = 1
 
