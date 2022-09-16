@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables: 
-  - group: TeraformEnvVars
+- group: TeraformEnvVars
   tag: '$(Build.BuildId)'
 
 stages:
