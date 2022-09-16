@@ -9,7 +9,6 @@ resources:
 - repo: self
 
 variables: 
-- group: TeraformEnvVars
   tag: '$(Build.BuildId)'
 
 stages:
@@ -20,6 +19,8 @@ stages:
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
+    variables: 
+    - group: TeraformEnvVars      
     steps:
     - task: Docker@2
       inputs:
@@ -37,6 +38,8 @@ stages:
     displayName: 'Provisioning Container Instance'
     pool:
       vmImage: 'ubuntu-latest'
+    variables: 
+    - group: TeraformEnvVars
     steps:
     - script: |
         set -e
