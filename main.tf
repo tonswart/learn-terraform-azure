@@ -24,23 +24,33 @@ variable "imagebuild" {
   description = "Latest Image Build"
 }
 
+variable "dockerhub_account" {
+  type        = string
+  description = "Docker Hub Account"
+}
+
+variable "dockerhub_repository" {
+  type        = string
+  description = "Docker Hub Repository"
+}
+
 resource "azurerm_resource_group" "tf_test" {
   name     = "tfmainrg"
   location = "West Europe"
 }
 
 resource "azurerm_container_group" "tfcg_test" {
-  name                = "weatherapi"
+  name                = "${var.dockerrepository}"
   location            = azurerm_resource_group.tf_test.location
   resource_group_name = azurerm_resource_group.tf_test.name
 
   ip_address_type = "Public"
-  dns_name_label  = "tonswartwa"
+  dns_name_label  = "${var.dockerhub_account}wa"
   os_type         = "Linux"
 
   container {
     name   = "weatherapi"
-    image  = "tonswart/weatherapi:${var.imagebuild}"
+    image  = "${var.dockerhub_account}/${var.dockerrepository}:${var.imagebuild}"
     cpu    = 1
     memory = 1
 

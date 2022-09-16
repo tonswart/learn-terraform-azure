@@ -8,7 +8,8 @@ trigger:
 resources:
 - repo: self
 
-variables:
+variables: 
+  - group: TeraformEnvVars
   tag: '$(Build.BuildId)'
 
 stages:
@@ -23,7 +24,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'tonswart-docker-hub'
-        repository: 'tonswart/weatherapi'
+        repository: '$(DOCKERHUB_ACCOUNT)/$(DOCKERHUB_REPOSITORY)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
@@ -36,8 +37,6 @@ stages:
     displayName: 'Provisioning Container Instance'
     pool:
       vmImage: 'ubuntu-latest'
-    variables: 
-    - group: TeraformEnvVars
     steps:
     - script: |
         set -e
@@ -52,4 +51,5 @@ stages:
         ARM_TENANT_ID: $(ARM_TENANT_ID)
         ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
         TF_VAR_imagebuild: $(tag)
-        
+        TF_VAR_dockerhub_account: $(DOCKERHUB_ACCOUNT)
+        TF_VAR_dockerhub_repository: $(DOCKERHUB_REPOSITORY)
