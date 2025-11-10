@@ -5,8 +5,8 @@
     "file_name": "organizations-100.csv"
   },
   {
-    "relative_git_file_url": "path/to/file2.csv",
+    "relative_git_file_url": "learn-terraform-azure/refs/heads/main/platform/products-100.csv",
     "folder_name": "bronze",
-    "file_name": "file2.csv"
+    "file_name": "products-100.csv"
   }
 ]
