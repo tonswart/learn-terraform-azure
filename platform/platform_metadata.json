@@ -1,0 +1,12 @@
+[
+  {
+    "relative_git_file_url": "path/to/file1.csv",
+    "folder_name": "bronze",
+    "file_name": "file1.csv"
+  },
+  {
+    "relative_git_file_url": "path/to/file2.csv",
+    "folder_name": "bronze",
+    "file_name": "file2.csv"
+  }
+]
